@@ -31,6 +31,18 @@ private:
     void onGameBegin(void) override;
     [[nodiscard]] PlayAgain onGameEnd(void) const override;
 
+    // Handle Input Events
+    // 
+    void handleInputEvents(void);
+
+    // Draw FPS to Screen
+    //
+    void drawFPSToOutputBuffer(void);
+
+    // Draw Score to Screen
+    //
+    void drawScoreToOutputBuffer(void);
+
     // Private Data Variables
     //
     size_t m_score;

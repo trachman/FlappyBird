@@ -1,5 +1,7 @@
 #include "FlappyBird.h"
 
+#include <cmath>
+
 
 // Constructor
 //
@@ -15,8 +17,10 @@ FlappyBird::FlappyBird(const std::wstring& title, const int width, const int hei
 //
 bool FlappyBird::update(const double deltaTime)
 {
+    this->handleInputEvents();
+
     // TODO
-    m_running = false;
+    // Physics, movements, etc.
 
     return true;
 }
@@ -26,10 +30,14 @@ bool FlappyBird::update(const double deltaTime)
 //
 bool FlappyBird::render(void)
 {
-    // TODO
-    m_running = false;
+    this->drawFPSToOutputBuffer();
+    this->drawScoreToOutputBuffer();
 
-    return true;
+    // TODO
+    // Draw Pipes to buffer
+    // Draw Bird to buffer
+
+    return this->ConsoleEngine::render();
 }
 
 
@@ -93,4 +101,41 @@ ConsoleEngine::PlayAgain FlappyBird::onGameEnd(void) const
         MB_YESNO);
 
     return response == YES_INT ? PlayAgain::YES : PlayAgain::NO;
+}
+
+
+// Handle Input Events
+//
+void FlappyBird::handleInputEvents(void)
+{
+    for (const Input input : m_inputCommands)
+    {
+        if (input == Input::QUIT || input == Input::UNDEFINED)
+        {
+            // Break out of the game loop
+            m_running = false;
+            break;
+        }
+    }
+}
+
+
+// Draw FPS to Screen
+//
+void FlappyBird::drawFPSToOutputBuffer(void)
+{
+    const int fpsInt = static_cast<int>(std::ceil(m_fps));
+    const std::wstring fpsStr = L"FPS: " + std::to_wstring(fpsInt);
+
+    this->drawStringToBuffer(fpsStr, 0, 0);
+}
+
+
+// Draw Score to Screen
+//
+void FlappyBird::drawScoreToOutputBuffer(void)
+{
+    const std::wstring scoreStr = L"Score: " + std::to_wstring(m_score);
+
+    this->drawStringToBuffer(scoreStr, 1, 0);
 }

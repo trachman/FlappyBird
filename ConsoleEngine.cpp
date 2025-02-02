@@ -226,13 +226,13 @@ bool ConsoleEngine::render(void)
 //
 bool ConsoleEngine::input(void)
 {
+    m_inputCommands.clear();
+    m_inputBuffer.clear();
+
     unsigned long numEvents = 0;
 
     if (!GetNumberOfConsoleInputEvents(m_stdInput, &numEvents))
     {
-        m_inputCommands.clear();
-        m_inputBuffer.clear();
-
         std::cout << "Error getting number of console input events." << std::endl;
 
         return false;
@@ -240,9 +240,6 @@ bool ConsoleEngine::input(void)
 
     if (numEvents == 0)
     {
-        m_inputCommands.clear();
-        m_inputBuffer.clear();
-
         return true;
     }
 

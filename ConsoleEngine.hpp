@@ -18,10 +18,7 @@ public:
         UNDEFINED = -1,
         NONE      = 0,
         QUIT      = 1,
-        UP        = 2,
-        DOWN      = 3,
-        LEFT      = 4,
-        RIGHT     = 5
+        JUMP      = 2
     };
 
     enum class PlayAgain
@@ -39,15 +36,15 @@ public:
     ConsoleEngine& operator=(const ConsoleEngine& RHS) = delete;
     ConsoleEngine& operator=(ConsoleEngine&& RHS) = delete;
 
-    [[nodiscard]] int gameLoop(void);
     [[nodiscard]] bool initializeConsole(void);
+    [[nodiscard]] int gameLoop(void);
 
 protected:
     [[nodiscard]] virtual bool update(const double deltaTime) = 0;
     [[nodiscard]] virtual bool render(void);
     virtual void resetGameState(void) = 0;
     virtual void onGameBegin(void) = 0;
-    virtual PlayAgain onGameEnd(void) const = 0;
+    [[nodiscard]] virtual PlayAgain onGameEnd(void) const = 0;
     [[nodiscard]] bool input(void);
     [[nodiscard]] int width(void) const;
     [[nodiscard]] int height(void) const;

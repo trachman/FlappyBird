@@ -21,9 +21,15 @@
     <ClCompile Include="ConsoleEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FlappyBird.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleEngine.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlappyBird.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -430,25 +430,18 @@ ConsoleEngine::Input ConsoleEngine::extractKeyEvent(const KEY_EVENT_RECORD& keyE
         return ConsoleEngine::Input::NONE;
     }
 
-    // W, A, S, D, Q Mapping
+    // Q Mapping
     switch (keyEvent.uChar.UnicodeChar)
     {
         case L'q': return ConsoleEngine::Input::QUIT;
-        case L'w': return ConsoleEngine::Input::UP;
-        case L's': return ConsoleEngine::Input::DOWN;
-        case L'a': return ConsoleEngine::Input::LEFT;
-        case L'd': return ConsoleEngine::Input::RIGHT;
         default:   break;
     }
 
-    // Arrow Key Mapping and Escape Key Mapping
+    // Spacebar and Escape Key Mapping
     switch (keyEvent.wVirtualKeyCode)
     {
         case 27: return ConsoleEngine::Input::QUIT;
-        case 38: return ConsoleEngine::Input::UP;
-        case 40: return ConsoleEngine::Input::DOWN;
-        case 37: return ConsoleEngine::Input::LEFT;
-        case 39: return ConsoleEngine::Input::RIGHT;
+        case 32: return ConsoleEngine::Input::JUMP;
         default: return ConsoleEngine::Input::NONE;
     }
 
